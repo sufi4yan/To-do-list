@@ -118,9 +118,20 @@ item.addEventListener('touchstart', function(e) {
                                 lib.addhtml()
                                 slidedivs()
                         }, 100);
-
-
-
+                    }
+                    else{
+                        diffdiv = 0
+                        diffdel = 0
+                        item.style.transition = `all 0.2s`
+                        item.style.transform = `translateX(-${diffdiv}px)`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
+                        setTimeout(() => {
+                            document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                lib.clearhtml()
+                                lib.addhtml()
+                                slidedivs()
+                            }, 100);
                     }
                 })
 
