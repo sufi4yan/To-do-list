@@ -101,7 +101,7 @@ h2{
     padding-top:30%;
     top: 0%;
     transition: all 1s;
-    transform: translateY(0%);
+    transform: translateY(-300%);
 }
 .popup{
     background-color: rgb(182, 237, 160);
