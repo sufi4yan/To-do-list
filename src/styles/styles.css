@@ -174,3 +174,13 @@ form{
     color: white;
     border-radius: 10px;
 }
+.precont{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.precont button{
+    display: none;
+    width: 60px;
+    margin-left:0px;
+}

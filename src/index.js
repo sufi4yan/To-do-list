@@ -57,6 +57,7 @@ submitButton.addEventListener(`click`, (e) => {
     console.log(lib.listtasks())
     lib.clearhtml()
 lib.addhtml()
+slidedivs()
     
     
         
@@ -69,24 +70,7 @@ function slidedivs() {
 
 
     complete.forEach((item) => {
-        item.addEventListener(`change`, () => {
-            console.log(item.id.slice(-1))
-            anime({
-                targets: `#anima${item.id.slice(-1)}`,
-                textDecoration:`line-through`,
-                translateX: outerWidth,
-                opacity: 0.5,
-                complete: function anim() {
-                            document.getElementById(`anima${item.id.slice(-1)}`).style.display = `none`
-                        }
-    
-                    })
-    
-                } )
-            
             const box = document.querySelectorAll('.looper');
-    
-                
                 box.forEach((item) => {
                     
                     item.addEventListener(`dblclick`, () => {
@@ -102,21 +86,37 @@ function slidedivs() {
                             let ongoingY = e.changedTouches[0].screenY
                             console.log(`silde = ` + e.changedTouches[0].screenX)
                              isslide = true
-                             if (isslide && startingpointX > ongoingX && startingpointY === ongoingY){
+                             if (isslide && startingpointX > ongoingX && startingpointY - ongoingY < 10 && startingpointY - ongoingY > -10){
+                                document.getElementById(`delete${item.id.slice(-1)}`).style.display = `block`
                                 anime({
                                     targets: item,
-                                    translateX: -50,
+                                    translateX: -10,
                                     zIndex: -1,
-                                    duration:500,
+                                    duration:300,
                                     complete: function() {
-                                        document.querySelector(`body`).addEventListener(`click`, () => {
+                                        document.querySelector(`body`).addEventListener(`touchstart`, () => {
+                                            anime({targets: item, translateX:10})
+                                            anime({
+                                                targets: `#delete${item.id.slice(-1)}`,
+                                                scale: 0,
+
+                                            })
                                             anime({targets: item, translateX:0})
-                                            slidedivs()
+                                            
+                                            setTimeout(() => {
+                                                document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                                lib.clearhtml()
+                                                lib.addhtml()
+                                                slidedivs()
+                                                
+                                                
+                                            }, 100);
                                             
     
                                         })
                                     }
                                 })
+                                
             
                             }
                         })
@@ -125,6 +125,4 @@ function slidedivs() {
                 })        
             
             })
-    
-
 }

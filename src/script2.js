@@ -10,14 +10,18 @@ export class taskslib {
     addhtml(){
         let num = 0
         this.tasks.forEach((task) => {
-            
+            const delbut = document.createElement(`button`)
             const taskdiv = document.createElement(`div`)
             const title = document.createElement(`p`)
             const timeCont = document.createElement(`div`)
+            const precontainer = document.createElement(`div`)
             const dateComp = document.createElement(`p`)
             const timeComp = document.createElement(`p`)
             const completeTask = document.createElement(`input`)
-
+            delbut.innerText = `Delete`
+            delbut.setAttribute(`id`, `delete${num}`)
+            delbut.classList.add(`delete-but`)
+            precontainer.classList.add(`precont`)
             taskdiv.classList.add(`task`)
             taskdiv.classList.add(`looper`)
             taskdiv.setAttribute(`id`, `anima${num}`)
@@ -28,7 +32,8 @@ export class taskslib {
             completeTask.setAttribute(`type`, `checkbox`)
             timeCont.append(dateComp, timeComp, completeTask)
             taskdiv.append(title, timeCont)
-            container.appendChild(taskdiv)
+            precontainer.append(taskdiv, delbut)
+            container.appendChild(precontainer)
             title.innerText = task.title
             taskdiv.style.borderLeft = `10px solid ${task.priority}`
             dateComp.innerText = task.date
