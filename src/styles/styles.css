@@ -38,10 +38,12 @@ h2{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
+    padding: 0px 10px;
     border-left:10px solid red;
     background-color: #fff;
     border-radius: 10px;
+    padding-right: 0px;
+
 
 }
 .time-cont{
@@ -60,7 +62,7 @@ h2{
     text-align: left;
     width:40%;
     font-weight: bold;
-    text-decoration:line-through;
+
 }
 .create-task{
     all:unset;
@@ -152,6 +154,9 @@ form{
 .checks{
     width:100%;
 }
+[type=checkbox]{
+    margin-right: 10px
+}
 .red-pr, .blue-pr, .green-pr, .yellow-pr{
     width: 100%;
     height:30px;
@@ -179,8 +184,19 @@ form{
     display: flex;
     justify-content: center;
 }
-.precont button{
-    display: none;
+.taskcont button{
+    display:none;
+    transform: scale(0);
+
+    background-color: red;
+    height: 100%;
     width: 60px;
     margin-left:0px;
+    color: white;
+    font-weight: bold;
+    border: none;
+
+}
+.slide{
+    transform: translateX(-20px);
 }

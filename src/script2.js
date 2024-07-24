@@ -31,9 +31,9 @@ export class taskslib {
             completeTask.classList.add(`loop`)
             completeTask.setAttribute(`type`, `checkbox`)
             timeCont.append(dateComp, timeComp, completeTask)
-            taskdiv.append(title, timeCont)
-            precontainer.append(taskdiv, delbut)
-            container.appendChild(precontainer)
+            taskdiv.append(title, timeCont, delbut)
+            container.appendChild(taskdiv)
+
             title.innerText = task.title
             taskdiv.style.borderLeft = `10px solid ${task.priority}`
             dateComp.innerText = task.date

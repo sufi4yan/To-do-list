@@ -64,69 +64,76 @@ slidedivs()
 lib.addhtml()
 slidedivs()
 function slidedivs() {
-    const complete = document.querySelectorAll(`.loop`)
 
 
-    complete.forEach((item) => {
-            const box = document.querySelectorAll('.looper');
-                box.forEach((item) => {
-                    
-                    item.addEventListener(`dblclick`, () => {
-                        console.log(`bello`)
-                    })
-                    item.addEventListener('touchstart', function(e) {
-                        let isslide = false
-                        console.log(e)
-                        let startingpointX = e.changedTouches[0].screenX
-                        let startingpointY = e.changedTouches[0].screenY
-                        item.addEventListener(`touchmove`, (e)=> {
-                            let ongoingX = e.changedTouches[0].screenX
-                            let ongoingY = e.changedTouches[0].screenY
-                            console.log(`silde = ` + e.changedTouches[0].screenX)
-                             isslide = true
-                             if (isslide && startingpointX > ongoingX && startingpointY - ongoingY < 10 && startingpointY - ongoingY > -10){
-                                document.getElementById(`delete${item.id.slice(-1)}`).style.display = `block`
-                                anime({
-                                    targets: item,
-                                    translateX: -10,
-                                    zIndex: -1,
-                                    duration:300,
-                                    complete: function() {
-                                        document.querySelector(`body`).addEventListener(`touchstart`, (e) => {
-                                            if (!String(e.target).includes(`Button`)){
-                                                anime({targets: item, translateX:10})
-                                                anime({
-                                                    targets: `#delete${item.id.slice(-1)}`,
-                                                    scale: 0,
-    
-                                                })
-                                                anime({targets: item, translateX:0})
-                                                
-                                                setTimeout(() => {
-                                                    document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
-                                                    lib.clearhtml()
-                                                    lib.addhtml()
-                                                    slidedivs()
-                                                    
-                                                    
-                                                }, 100)
-                                            }
-                                           
-                                            
-    
-                                        })
-                                    }
-                                })
+const box = document.querySelectorAll('.looper');
+box.forEach((item) => {
+
+item.addEventListener(`dblclick`, () => {
+    console.log(`bello`)
+})
+item.addEventListener('touchstart', function(e) {
+    let isslide = false
+    console.log(e)
+    let startingpointX = e.changedTouches[0].screenX
+    let startingpointY = e.changedTouches[0].screenY
+    console.log(item.clientLeft)
+    item.addEventListener(`touchmove`, (e)=> {
+        let ongoingX = e.changedTouches[0].screenX
+        let ongoingY = e.changedTouches[0].screenY
+
+        
+            isslide = true
+            if (isslide){
+                document.getElementById(`delete${item.id.slice(-1)}`).style.display = `block`
+                let diffdiv = startingpointX - ongoingX
+                let diffdel = startingpointX - ongoingX
+                diffdiv > 80 ? diffdiv = 80:diffdiv = diffdiv
+                item.style.transform = `translateX(-${diffdiv}px)`
+                diffdel / 30 > 1 ? diffdel = 1: diffdel / 30 < 0 ? diffdel = 0: diffdel = diffdel / 30
+                document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
+
+
+                item.addEventListener(`touchend`, () => {
+                    if (diffdiv > 20){
+                        diffdiv = 80
+                        diffdel = 1
+                        item.style.transform = `translateX(-${diffdiv}px)`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
+
+                    }
+                    else{
+                        diffdiv = 0
+                        diffdel = 0
+                        item.style.transform = `translateX(-${diffdiv}px)`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
+
+                    }
+                })
+
+                    document.querySelector(`body`).addEventListener(`click`, function black() {
+
+                        item.style.transform = `translateX(0px)`
                                 
-            
-                            }
+                                setTimeout(() => {
+                                    lib.clearhtml()
+                                lib.addhtml()
+                                slidedivs()
+                                }, 1000);
                         })
-                            
-                    });
-                })        
+
+                        
+                        
+
+                    }
+                })
+})
             
-            })
-}
+
+        })}     
+
+            
+
 document.querySelector(`form`).addEventListener(`submit`, (e) => {
     e.preventDefault()
 })
