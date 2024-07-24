@@ -89,7 +89,7 @@ item.addEventListener('touchstart', function(e) {
                 let diffdiv = startingpointX - ongoingX
                 let diffdel = startingpointX - ongoingX
                 diffdiv > 80 ? diffdiv = 80:diffdiv = diffdiv
-                item.style.transform = `translateX(-${diffdiv}px)`
+                item.style.transform = `translateX(-${Math.round(diffdiv)}px)`
                 diffdel / 30 > 1 ? diffdel = 1: diffdel / 30 < 0 ? diffdel = 0: diffdel = diffdel / 30
                 document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
 
@@ -112,15 +112,31 @@ item.addEventListener('touchstart', function(e) {
                         item.style.transition = `all 0.2s`
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(0)`
-
+                        setTimeout(() => {
+                            document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                            lib.clearhtml()
+                                lib.addhtml()
+                                slidedivs()
+                        }, 100);
 
 
 
                     }
                 })
 
-                    document.querySelector(`body`).addEventListener(`click`, function black() {
+                    window.addEventListener(`click`, function black() {
+                        item.style.transform = `translateX(0px)`
+                        item.style.transition = `all 0.2s`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(0)`
                         
+                        
+                        setTimeout(() => {
+                            document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                lib.clearhtml()
+                                lib.addhtml()
+                                slidedivs()
+                            }, 100);
                         })
 
                         
