@@ -56,67 +56,75 @@ submitButton.addEventListener(`click`, (e) => {
     lib.newtask(new task(`wild`, duedate, formattedtime, priorities))
     console.log(lib.listtasks())
     lib.clearhtml()
-    lib.addhtml()
-    const complete = document.querySelectorAll(`.loop`)
-complete.forEach((item) => {
-    item.addEventListener(`change`, () => {
-        console.log(item.id.slice(-1))
-        anime({
-            targets: `#anima${item.id.slice(-1)}`,
-            textDecoration:`line-through`,
-            translateX: outerWidth,
-            opacity: 0.5,
-            complete: function anim() {
-                        document.getElementById(`anima${item.id.slice(-1)}`).style.display = `none`
-                    }
-
-                })
-
-            } )
-        })
-        const box = document.querySelectorAll('.looper');
-    box.forEach((item) => {
-        const LONG_PRESS_TIME = 500; 
-    let pressTimer;
-        item.addEventListener(`dblclick`, () => {
-            console.log(`bello`)
-        })
-        item.addEventListener('touchstart', function(e) {
-            let isslide = false
-            console.log(e)
-            let startingpointX = e.changedTouches[0].screenX
-            let startingpointY = e.changedTouches[0].screenY
-            item.addEventListener(`touchmove`, (e)=> {
-                let ongoingX = e.changedTouches[0].screenX
-                let ongoingY = e.changedTouches[0].screenY
-                console.log(`silde = ` + e.changedTouches[0].screenX)
-                 isslide = true
-                 if (isslide && startingpointX > ongoingX && startingpointY === ongoingY){
-                    anime({
-                        targets: item,
-                        translateX: -50,
-                        zIndex: -1,
-                        duration:500,
-                        complete: function() {
-                            window.addEventListener(`click`, () => {
-                                anime({targets: item, translateX:0})
-                            })
-                        }
-                    })
-
-                }
-            })
-                
-        });
-        
-        
-    })
+lib.addhtml()
     
     
         
 }) 
+lib.newtask(new task(`wild`, `24 july`, `12:00 PM`, `yellow`))
+lib.addhtml()
+slidedivs()
+function slidedivs() {
+    const complete = document.querySelectorAll(`.loop`)
 
 
+    complete.forEach((item) => {
+        item.addEventListener(`change`, () => {
+            console.log(item.id.slice(-1))
+            anime({
+                targets: `#anima${item.id.slice(-1)}`,
+                textDecoration:`line-through`,
+                translateX: outerWidth,
+                opacity: 0.5,
+                complete: function anim() {
+                            document.getElementById(`anima${item.id.slice(-1)}`).style.display = `none`
+                        }
+    
+                    })
+    
+                } )
+            
+            const box = document.querySelectorAll('.looper');
+    
+                
+                box.forEach((item) => {
+                    
+                    item.addEventListener(`dblclick`, () => {
+                        console.log(`bello`)
+                    })
+                    item.addEventListener('touchstart', function(e) {
+                        let isslide = false
+                        console.log(e)
+                        let startingpointX = e.changedTouches[0].screenX
+                        let startingpointY = e.changedTouches[0].screenY
+                        item.addEventListener(`touchmove`, (e)=> {
+                            let ongoingX = e.changedTouches[0].screenX
+                            let ongoingY = e.changedTouches[0].screenY
+                            console.log(`silde = ` + e.changedTouches[0].screenX)
+                             isslide = true
+                             if (isslide && startingpointX > ongoingX && startingpointY === ongoingY){
+                                anime({
+                                    targets: item,
+                                    translateX: -50,
+                                    zIndex: -1,
+                                    duration:500,
+                                    complete: function() {
+                                        document.querySelector(`body`).addEventListener(`click`, () => {
+                                            anime({targets: item, translateX:0})
+                                            slidedivs()
+                                            
+    
+                                        })
+                                    }
+                                })
+            
+                            }
+                        })
+                            
+                    });
+                })        
+            
+            })
+    
 
-
-
+}
