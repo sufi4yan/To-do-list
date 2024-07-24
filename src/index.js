@@ -12,10 +12,10 @@ date.value = dates.format(new Date(), `yyyy-MM-dd`)
 time.value = dates.format(new Date(), `hh:mm`)
 createButton.addEventListener(`click`,()=> {
 
-        popup.style.top = `0%`
+        popup.style.transform = `translateY(0px)`
         
         cancelbutton.addEventListener(`click`, () => {
-            popup.style.top = `-300%`
+            popup.style.transform = `translateY(-300%)`
 
         })
 })
