@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/styles/styles.css">
+</head>
+<body>
+    <header></header>
+    <div class="overlay" id="overlay">
+        <div class="cancel"><button class="cancelbutton">Cancel</button></div>
+        <div class="popup">
+           <form action="">
+            <div class="label">
+                <label for="task-label">Enter a label for your task</label>
+                <input type="text" name="" id="task-label">
+            </div>
+            <div class="label">
+                <label for="extra-info">Extra info (if any)</label>
+                <input type="text" name="" id="extra-info">
+            </div>
+            <div class="date">
+                <label for="date">Enter a date</label>
+                <input type="date" name="" id="date" value="2024-03-01">
+            </div>
+            <div class="date">
+                <label for="time">Enter time for your task</label>
+                <input type="time" name="" id="time" value="00:00">
+            </div>
+            <div class="label">
+                <label for="priority">Enter a label for your task</label>
+                <div class="checks">
+                   <label for="priority-red"> <div class="red-pr pr">Most important</div></label>
+                    <input type="checkbox" name="" id="priority-red">
+
+                    <label for="priority-yellow"> <div class="yellow-pr pr">Less important</div></label>
+                    <input type="checkbox" name="" id="priority-yellow">
+
+                    <label for="priority-green" ><div class="green-pr pr">least important</div></label>
+                    <input type="checkbox" name="" id="priority-green">
+
+                    <label for="priority-blue" > <div class="blue-pr pr">Not important</div></label>
+                    <input type="checkbox" name="" id="priority-blue">
+                </div>
+                
+            </div>
+            <div class="subcont"><button type="submit" id="submitt">Submit</button></div>
+
+           
+      
+           </form>
+
+
+        </div>
+    </div>
+    <main>
+        <h1>To-do List</h1>
+        <h2>Homepage</h2>
+        <button class="create-task" id="create">Create a task</button>
+        <div class="taskcont" id="taskcont">
+        </div>
+    </main>
+    
+    <script src="bundle.js" type="module"></script>
+</body>
+</html>

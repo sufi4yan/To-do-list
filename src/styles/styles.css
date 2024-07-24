@@ -1,0 +1,176 @@
+
+body{
+    padding: 0px;
+    margin:0px;
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+main{
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header{
+    height:70px;
+    width:100vw;
+    background-color: rgb(169, 169, 133);
+    margin-bottom: 0px;
+}
+h1{
+    margin-top: 10px;
+    font-size:3rem;
+    margin-bottom: 10px;
+}
+h2{
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+.task{
+    width:90%;
+    height:60px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    border-left:10px solid red;
+    background-color: #fff;
+    border-radius: 10px;
+
+}
+.time-cont{
+    display: flex;
+    font-size: 01rem;
+    column-gap: 5px;
+    align-items: center;
+    text-wrap: nowrap;
+
+}
+.time-cont [type=checkbox]{
+    width: 30px;
+
+}
+.title{
+    text-align: left;
+    width:40%;
+    font-weight: bold;
+    text-decoration:line-through;
+}
+.create-task{
+    all:unset;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 150px;
+    background-color: rgb(199, 199, 157);
+    color: black;
+    text-align: center;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.taskcont{
+    border-top: 5px solid black;
+    padding-top: 10px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    transition: all 0.2s;
+}
+.overlay{
+    
+    position: absolute;
+
+
+
+
+    width:100vw;
+    height: 100vh;
+    background-color: rgba(39, 37, 37, 0.322);
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    padding-top:30%;
+    top: -300%;
+    transition: all 1s;
+}
+.popup{
+    background-color: rgb(182, 237, 160);
+    width: 300px;
+    height: 450px;
+    padding:30px;
+
+}
+.cancel{
+    position: absolute;
+    top:20px;
+    left: 20px;
+}
+@keyframes gefa {
+    0%{bottom: -200%;}
+    100%{bottom:0%}
+}
+input{
+    width: 90%;
+    height:30px;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+}
+form{
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+.label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.date{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+[type=date], [type=time]{
+    background-color: rgb(164, 240, 134);
+    color:white;
+    font-size: 0.86rem;
+    font-weight: bold;
+    width:90px;
+}
+.checks{
+    width:100%;
+}
+.red-pr, .blue-pr, .green-pr, .yellow-pr{
+    width: 100%;
+    height:30px;
+    margin-top: 10px;
+    text-align: center;
+    align-content: center;
+    color: white;
+}
+.red-pr{background-color: red;}.blue-pr{background-color: blue;}.green-pr{background-color: green;}.yellow-pr{background-color: yellow;color: black}
+.checks > input{
+    display:none;
+}
+.subcont{
+    justify-self: end;
+}
+[type=submit]{
+    padding:5px 20px;
+    background-color: rgb(164, 240, 134);
+    font-size: 1.1rem;
+    color: white;
+    border-radius: 10px;
+}
