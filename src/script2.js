@@ -58,6 +58,22 @@ export class task{
         this.time = time
         this.priority = priority
     }
+
+    set titl(newtitle){
+        if (newtitle.length > 1 && newtitle.length < 30){
+            console.log(`hello`)
+            this._titl = newtitle
+        }
+        else{
+
+            throw new Error(`not a valid label`)
+        }
+    }
+    get titl(){
+        return this._titl
+    }
+
+
     details(){
         return {title: this.titl,
             // this.info = info
@@ -65,4 +81,5 @@ export class task{
             time : this.time,
             priority :this.priority}
     }
+
 }

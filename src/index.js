@@ -2,6 +2,7 @@ import * as dates from 'date-fns'
 import anime from 'animejs'
 
 import {task, taskslib} from './script2.js';
+const title = document.getElementById(`task-label`)
 const createButton = document.getElementById(`create`)
 const popup = document.getElementById(`overlay`)
 const cancelbutton = document.querySelector(`.cancelbutton`)
@@ -45,24 +46,21 @@ function priority(){
 let lib = new taskslib()
 
 priority()
-submitButton.addEventListener(`click`, (e) => {
-    e.preventDefault()
+submitButton.addEventListener(`click`, () => {
+
     const duedat = dates.parse(date.value, 'yyyy-MM-dd', new Date())
     let  formattedtime = dates.parse(time.value, 'HH:mm', new Date())
     formattedtime = dates.format(formattedtime, `hh:mm a`)
     const duedate = dates.format(duedat, `d-MMM`)
     console.log(priorities)
-
-    lib.newtask(new task(`wild`, duedate, formattedtime, priorities))
+    const taskTitle = title.value
+    lib.newtask(new task(taskTitle, duedate, formattedtime, priorities))
     console.log(lib.listtasks())
     lib.clearhtml()
 lib.addhtml()
-slidedivs()
-    
-    
-        
+slidedivs()    
 }) 
-lib.newtask(new task(`wild`, `24 july`, `12:00 PM`, `yellow`))
+
 lib.addhtml()
 slidedivs()
 function slidedivs() {
@@ -94,23 +92,26 @@ function slidedivs() {
                                     zIndex: -1,
                                     duration:300,
                                     complete: function() {
-                                        document.querySelector(`body`).addEventListener(`touchstart`, () => {
-                                            anime({targets: item, translateX:10})
-                                            anime({
-                                                targets: `#delete${item.id.slice(-1)}`,
-                                                scale: 0,
-
-                                            })
-                                            anime({targets: item, translateX:0})
-                                            
-                                            setTimeout(() => {
-                                                document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
-                                                lib.clearhtml()
-                                                lib.addhtml()
-                                                slidedivs()
+                                        document.querySelector(`body`).addEventListener(`touchstart`, (e) => {
+                                            if (!String(e.target).includes(`Button`)){
+                                                anime({targets: item, translateX:10})
+                                                anime({
+                                                    targets: `#delete${item.id.slice(-1)}`,
+                                                    scale: 0,
+    
+                                                })
+                                                anime({targets: item, translateX:0})
                                                 
-                                                
-                                            }, 100);
+                                                setTimeout(() => {
+                                                    document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                                    lib.clearhtml()
+                                                    lib.addhtml()
+                                                    slidedivs()
+                                                    
+                                                    
+                                                }, 100)
+                                            }
+                                           
                                             
     
                                         })
@@ -126,3 +127,8 @@ function slidedivs() {
             
             })
 }
+document.querySelector(`form`).addEventListener(`submit`, (e) => {
+    e.preventDefault()
+})
+
+
