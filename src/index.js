@@ -98,28 +98,29 @@ item.addEventListener('touchstart', function(e) {
                     if (diffdiv > 20){
                         diffdiv = 80
                         diffdel = 1
+                        item.style.transition = `all 0.2s`
                         item.style.transform = `translateX(-${diffdiv}px)`
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
 
+
                     }
-                    else{
+                    else if(diffdiv < -20){
+                        console.log(`ur`)
                         diffdiv = 0
                         diffdel = 0
                         item.style.transform = `translateX(-${diffdiv}px)`
-                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
+                        item.style.transition = `all 0.2s`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
+                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(0)`
+
+
+
 
                     }
                 })
 
                     document.querySelector(`body`).addEventListener(`click`, function black() {
-
-                        item.style.transform = `translateX(0px)`
-                                
-                                setTimeout(() => {
-                                    lib.clearhtml()
-                                lib.addhtml()
-                                slidedivs()
-                                }, 1000);
+                        
                         })
 
                         
