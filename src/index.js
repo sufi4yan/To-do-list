@@ -95,7 +95,7 @@ item.addEventListener('touchstart', function(e) {
 
 
                 item.addEventListener(`touchend`, () => {
-                    if (diffdiv > 20){
+                    if (diffdiv > 10){
                         diffdiv = 80
                         diffdel = 1
                         item.style.transition = `all 0.2s`
@@ -104,21 +104,7 @@ item.addEventListener('touchstart', function(e) {
 
 
                     }
-                    else if(diffdiv < -20){
-                        console.log(`ur`)
-                        diffdiv = 0
-                        diffdel = 0
-                        item.style.transform = `translateX(-${diffdiv}px)`
-                        item.style.transition = `all 0.2s`
-                        document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
-                        document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(0)`
-                        setTimeout(() => {
-                            document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
-                            lib.clearhtml()
-                                lib.addhtml()
-                                slidedivs()
-                        }, 100);
-                    }
+                    
                     else{
                         diffdiv = 0
                         diffdel = 0
