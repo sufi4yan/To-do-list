@@ -88,7 +88,7 @@ item.addEventListener('touchstart', function(e) {
                 document.getElementById(`delete${item.id.slice(-1)}`).style.display = `block`
                 let diffdiv = startingpointX - ongoingX
                 let diffdel = startingpointX - ongoingX
-                diffdiv > 80 ? diffdiv = 80:diffdiv = diffdiv
+                diffdiv > 60 ? diffdiv = 60:diffdiv = diffdiv
                 item.style.transform = `translateX(-${Math.round(diffdiv)}px)`
                 diffdel / 30 > 1 ? diffdel = 1: diffdel / 30 < 0 ? diffdel = 0: diffdel = diffdel / 30
                 document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
@@ -96,7 +96,7 @@ item.addEventListener('touchstart', function(e) {
 
                 item.addEventListener(`touchend`, () => {
                     if (diffdiv > 10){
-                        diffdiv = 80
+                        diffdiv = 60
                         diffdel = 1
                         item.style.transition = `all 0.2s`
                         item.style.transform = `translateX(-${diffdiv}px)`
