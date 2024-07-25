@@ -56,13 +56,17 @@ submitButton.addEventListener(`click`, () => {
     const taskTitle = title.value
     lib.newtask(new task(taskTitle, duedate, formattedtime, priorities))
     console.log(lib.listtasks())
+    
     lib.clearhtml()
 lib.addhtml()
 slidedivs()    
+comptask()
 }) 
 
 lib.addhtml()
 slidedivs()
+comptask()
+
 function slidedivs() {
 
 
@@ -88,21 +92,19 @@ item.addEventListener('touchstart', function(e) {
                 document.getElementById(`delete${item.id.slice(-1)}`).style.display = `block`
                 let diffdiv = startingpointX - ongoingX
                 let diffdel = startingpointX - ongoingX
-                diffdiv > 60 ? diffdiv = 60:diffdiv = diffdiv
-                item.style.transform = `translateX(-${Math.round(diffdiv)}px)`
+                diffdiv > 80 ? diffdiv = 80:diffdiv = diffdiv
+
                 diffdel / 30 > 1 ? diffdel = 1: diffdel / 30 < 0 ? diffdel = 0: diffdel = diffdel / 30
                 document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
 
 
                 item.addEventListener(`touchend`, () => {
-                    if (diffdiv > 10){
-                        diffdiv = 60
+                    console.log(diffdiv)
+                    if (diffdiv > 5){
+                        diffdiv = 80
                         diffdel = 1
                         item.style.transition = `all 0.2s`
-                        item.style.transform = `translateX(-${diffdiv}px)`
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
-
-
                     }
                     
                     else{
@@ -114,14 +116,18 @@ item.addEventListener('touchstart', function(e) {
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transform = `scale(${diffdel})`
                         setTimeout(() => {
                             document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                
                                 lib.clearhtml()
                                 lib.addhtml()
                                 slidedivs()
+                                comptask()
+                                
                             }, 100);
                     }
                 })
-
-                    window.addEventListener(`click`, function black() {
+                }
+                    item.addEventListener(`click`, function black() {
+                        console.log(`hello`)
                         item.style.transform = `translateX(0px)`
                         item.style.transition = `all 0.2s`
                         document.getElementById(`delete${item.id.slice(-1)}`).style.transition = `all 0.2s`
@@ -130,26 +136,62 @@ item.addEventListener('touchstart', function(e) {
                         
                         setTimeout(() => {
                             document.getElementById(`delete${item.id.slice(-1)}`).style.display = `none`
+                                
                                 lib.clearhtml()
                                 lib.addhtml()
                                 slidedivs()
+                                comptask()
                             }, 100);
                         })
-
                         
                         
 
-                    }
-                })
+                    
+                
 })
             
 
-        })}     
+        }    )})} 
 
             
 
 document.querySelector(`form`).addEventListener(`submit`, (e) => {
-    e.preventDefault()
+    e.preventDefault() 
 })
+function comptask(){
+    document.querySelectorAll(`.loop`).forEach((item) => {
+        console.log(item)
+    item.addEventListener(`change`, () => {
+        if (item.checked){
+            console.log(lib.listtasks()[item.id.slice(-1)].title)
+            lib.removetask(lib.listtasks()[item.id.slice(-1)].title)
+            console.log(lib.listtasks())
+        
 
+        console.log(item.id.slice(-1))
+        document.getElementById(`anima${item.id.slice(-1)}`).style.transition = `all 0.5s`
+        document.getElementById(`anima${item.id.slice(-1)}`).style.opacity = `0.5`
+        setTimeout(() => {
+            document.getElementById(`anima${item.id.slice(-1)}`).style.transform = `translateX(-130%)`
+        }, 500);
+        setTimeout(() => {
+            document.getElementById(`anima${item.id.slice(-1)}`).style.display = `none`
+        }, 1000);
+        }
+    })
+    })
+}
 
+document.onreadystatechange = function() {
+    if (document.readyState !== "complete") {
+        document.querySelector(
+          "body").style.visibility = "hidden";
+        document.querySelector(
+          "#spinner").style.visibility = "visible";
+    } else {
+        document.querySelector(
+          "#spinner").style.display = "none";
+        document.querySelector(
+          "body").style.visibility = "visible";
+    }
+};

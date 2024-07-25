@@ -5,7 +5,13 @@ export class taskslib {
         this.tasks = []
     }
     newtask(task){
-        this.tasks.push(task.details())
+        if (this.tasks.some(taske => taske.title === task.title)){
+            alert(`alreadyexists`)
+        }
+        else{
+            this.tasks.push(task.details())
+        }
+        
     }
     addhtml(){
         let num = 0
@@ -49,33 +55,36 @@ export class taskslib {
     listtasks(){
         return this.tasks
     }
+    removetask(title){
+       this.tasks = this.tasks.filter(task => task.title !== title)
+    }
 }
 export class task{
-    constructor(titl,date,time, priority){
-        this.titl = titl
+    constructor(title,date,time, priority){
+        this.title = title
         // this.info = info
         this.date = date
         this.time = time
         this.priority = priority
     }
 
-    set titl(newtitle){
+    set title(newtitle){
         if (newtitle.length > 1 && newtitle.length < 30){
             console.log(`hello`)
-            this._titl = newtitle
+            this._title = newtitle
         }
         else{
 
             throw new Error(`not a valid label`)
         }
     }
-    get titl(){
-        return this._titl
+    get title(){
+        return this._title
     }
 
 
     details(){
-        return {title: this.titl,
+        return {title: this.title,
             // this.info = info
             date :this.date,
             time : this.time,
