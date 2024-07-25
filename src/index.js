@@ -162,7 +162,9 @@ function comptask(){
     document.querySelectorAll(`.loop`).forEach((item) => {
         console.log(item)
     item.addEventListener(`change`, () => {
+        
         if (item.checked){
+            item.remove()
             console.log(lib.listtasks()[item.id.slice(-1)].title)
             lib.removetask(lib.listtasks()[item.id.slice(-1)].title)
             console.log(lib.listtasks())
@@ -176,6 +178,9 @@ function comptask(){
         }, 500);
         setTimeout(() => {
             document.getElementById(`anima${item.id.slice(-1)}`).style.display = `none`
+            lib.clearhtml()
+            lib.addhtml()
+            comptask()
         }, 1000);
         }
     })

@@ -9,7 +9,13 @@
 <body>
     <div id="spinner" class="loader"></div>
     <header></header>
+    
     <div class="overlay" id="overlay">
+        <div class="intro">
+            <h1>To-do List</h1>
+            <h2>Homepage</h2>
+            <button class="create-task" id="create">Create a task</button>
+        </div>
         <div class="cancel"><button class="cancelbutton">Cancel</button></div>
         <div class="popup">
            <form action="">
@@ -19,7 +25,7 @@
             </div>
             <div class="label">
                 <label for="extra-info">Extra info (if any)</label>
-                <input type="text" name="" id="extra-info">
+                <textarea id="extra-info"></textarea>
             </div>
             <div class="date">
                 <label for="date">Enter a date</label>
@@ -54,10 +60,10 @@
 
         </div>
     </div>
+    
+   
     <main>
-        <h1>To-do List</h1>
-        <h2>Homepage</h2>
-        <button class="create-task" id="create">Create a task</button>
+        
         <div class="taskcont" id="taskcont">
             
         </div>

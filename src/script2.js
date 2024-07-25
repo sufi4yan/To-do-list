@@ -2,7 +2,7 @@ let container = document.getElementById(`taskcont`)
 export class taskslib {
     
     constructor(){
-        this.tasks = []
+        this.tasks = JSON.parse(localStorage.getItem(`tasks`)) || []
     }
     newtask(task){
         if (this.tasks.some(taske => taske.title === task.title)){
@@ -10,6 +10,7 @@ export class taskslib {
         }
         else{
             this.tasks.push(task.details())
+            this.savetostorage()
         }
         
     }
@@ -57,6 +58,10 @@ export class taskslib {
     }
     removetask(title){
        this.tasks = this.tasks.filter(task => task.title !== title)
+       this.savetostorage()
+    }
+    savetostorage(){
+        localStorage.setItem(`tasks`, JSON.stringify(this.tasks))
     }
 }
 export class task{
